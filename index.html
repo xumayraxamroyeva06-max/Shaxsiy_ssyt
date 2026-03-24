@@ -3,95 +3,77 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sevinch - Shaxsiy Portfolio</title>
+    <title>Xamroyeva Sevinch - Shaxsiy Portfolio</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
     <style>
         :root {
-            --primary: #c026d3;
-            --secondary: #7e22ce;
+            --primary: #6b21a8;
+            --secondary: #4c1d95;
+            --accent: #c026d3;
             --dark: #0f172a;
             --light: #f8fafc;
         }
         
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
         
         body {
             font-family: 'Segoe UI', system-ui, sans-serif;
             line-height: 1.7;
             color: #334155;
             background: var(--light);
-            overflow-x: hidden;
         }
         
         header {
             position: fixed;
-            top: 0;
             width: 100%;
-            background: rgba(15, 23, 42, 0.95);
+            background: rgba(15, 23, 42, 0.97);
             backdrop-filter: blur(12px);
             z-index: 1000;
-            border-bottom: 1px solid rgba(192, 38, 211, 0.2);
+            border-bottom: 1px solid rgba(107, 33, 168, 0.3);
         }
         
         nav {
             max-width: 1300px;
             margin: 0 auto;
-            padding: 1.2rem 5%;
+            padding: 1.3rem 5%;
             display: flex;
             justify-content: space-between;
             align-items: center;
         }
         
         .logo {
-            font-size: 2rem;
+            font-size: 1.9rem;
             font-weight: 800;
-            background: linear-gradient(90deg, var(--primary), var(--secondary));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-        
-        .nav-links {
-            display: flex;
-            gap: 2.5rem;
+            color: white;
         }
         
         .nav-links a {
             color: white;
             text-decoration: none;
+            margin-left: 2rem;
             font-weight: 600;
-            transition: all 0.3s;
+            transition: color 0.3s;
         }
         
-        .nav-links a:hover {
-            color: var(--primary);
-            transform: translateY(-2px);
-        }
+        .nav-links a:hover { color: var(--accent); }
         
         .hero {
             height: 100vh;
-            background: linear-gradient(135deg, var(--dark) 0%, #4c1d95 100%);
+            background: linear-gradient(135deg, var(--dark) 0%, var(--secondary) 100%);
             color: white;
             display: flex;
             align-items: center;
             justify-content: center;
             text-align: center;
             position: relative;
-            overflow: hidden;
         }
         
         .hero::before {
             content: '';
             position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: url('https://source.unsplash.com/random/1920x1080/?abstract,purple') no-repeat center/cover;
-            opacity: 0.15;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: url('https://source.unsplash.com/random/1920x1080/?mathematics,university') no-repeat center/cover;
+            opacity: 0.18;
         }
         
         .hero-content {
@@ -100,33 +82,32 @@
         }
         
         .hero-content h1 {
-            font-size: 4.5rem;
-            margin-bottom: 1rem;
-            line-height: 1.1;
+            font-size: 4.2rem;
+            margin-bottom: 0.8rem;
         }
         
-        .hero-content p {
-            font-size: 1.6rem;
-            margin-bottom: 2.5rem;
-            opacity: 0.9;
+        .hero-content .subtitle {
+            font-size: 1.65rem;
+            margin-bottom: 2rem;
+            opacity: 0.95;
         }
         
         .btn {
             display: inline-block;
-            padding: 16px 40px;
-            background: var(--primary);
+            padding: 16px 42px;
+            background: var(--accent);
             color: white;
             border-radius: 50px;
             text-decoration: none;
             font-weight: 700;
-            font-size: 1.1rem;
-            transition: all 0.4s;
+            font-size: 1.15rem;
             box-shadow: 0 10px 30px rgba(192, 38, 211, 0.4);
+            transition: all 0.4s;
         }
         
         .btn:hover {
-            transform: translateY(-8px) scale(1.05);
-            box-shadow: 0 20px 40px rgba(192, 38, 211, 0.5);
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(192, 38, 211, 0.55);
         }
         
         section {
@@ -136,46 +117,51 @@
         }
         
         h2 {
-            font-size: 3.2rem;
+            font-size: 3rem;
             text-align: center;
             margin-bottom: 4rem;
-            background: linear-gradient(90deg, var(--primary), var(--secondary));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+            color: var(--primary);
         }
         
-        .about p {
-            max-width: 800px;
-            margin: 0 auto;
+        .about, .education {
+            background: white;
+            border-radius: 20px;
+            padding: 3rem;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+        }
+        
+        .about p, .education p {
             font-size: 1.25rem;
             text-align: center;
-            color: #475569;
+            max-width: 850px;
+            margin: 0 auto;
         }
         
-        .skills-grid {
+        .grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 2rem;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2.5rem;
+            margin-top: 3rem;
         }
         
-        .skill-card {
+        .card {
             background: white;
             padding: 2.5rem 2rem;
             border-radius: 20px;
-            text-align: center;
             box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            text-align: center;
             transition: all 0.4s;
         }
         
-        .skill-card:hover {
+        .card:hover {
             transform: translateY(-15px);
-            box-shadow: 0 20px 40px rgba(192, 38, 211, 0.15);
+            box-shadow: 0 20px 50px rgba(107, 33, 168, 0.15);
         }
         
-        .skill-card i {
-            font-size: 3.5rem;
+        .card i {
+            font-size: 3.8rem;
             color: var(--primary);
-            margin-bottom: 1rem;
+            margin-bottom: 1.2rem;
         }
         
         .projects-grid {
@@ -192,27 +178,16 @@
             transition: all 0.4s;
         }
         
-        .project-card:hover {
-            transform: translateY(-15px);
-        }
+        .project-card:hover { transform: translateY(-12px); }
         
         .project-card img {
             width: 100%;
-            height: 240px;
+            height: 220px;
             object-fit: cover;
         }
         
-        .project-info {
-            padding: 1.8rem;
-        }
-        
-        .project-info h3 {
-            margin-bottom: 0.8rem;
-            color: var(--dark);
-        }
-        
         .contact {
-            background: linear-gradient(135deg, var(--dark), #4c1d95);
+            background: linear-gradient(135deg, var(--dark), var(--secondary));
             color: white;
         }
         
@@ -220,37 +195,27 @@
             max-width: 700px;
             margin: 0 auto;
             display: grid;
-            gap: 1.5rem;
+            gap: 1.6rem;
         }
         
         input, textarea {
-            padding: 18px 20px;
+            padding: 18px 22px;
             border: none;
             border-radius: 15px;
-            font-size: 1.1rem;
-            background: rgba(255,255,255,0.1);
+            background: rgba(255,255,255,0.12);
             color: white;
-        }
-        
-        input::placeholder, textarea::placeholder {
-            color: rgba(255,255,255,0.7);
+            font-size: 1.1rem;
         }
         
         button {
             padding: 18px;
-            background: var(--primary);
+            background: var(--accent);
             color: white;
             border: none;
             border-radius: 15px;
             font-size: 1.2rem;
             font-weight: 700;
             cursor: pointer;
-            transition: all 0.3s;
-        }
-        
-        button:hover {
-            background: #e879f9;
-            transform: scale(1.03);
         }
         
         footer {
@@ -260,10 +225,9 @@
             padding: 3rem 5%;
         }
         
-        /* Responsive */
         @media (max-width: 768px) {
-            .hero-content h1 { font-size: 3.2rem; }
-            .nav-links { gap: 1.2rem; font-size: 0.95rem; }
+            .hero-content h1 { font-size: 3rem; }
+            .nav-links a { margin-left: 1rem; font-size: 0.95rem; }
         }
     </style>
 </head>
@@ -272,9 +236,10 @@
     <!-- Navbar -->
     <header>
         <nav>
-            <div class="logo">Sevinch</div>
+            <div class="logo">Sevinch Xamroyeva</div>
             <div class="nav-links">
                 <a href="#about">Men haqimda</a>
+                <a href="#education">Ta’lim</a>
                 <a href="#skills">Ko‘nikmalar</a>
                 <a href="#projects">Loyihalar</a>
                 <a href="#contact">Aloqa</a>
@@ -282,48 +247,79 @@
         </nav>
     </header>
 
-    <!-- Hero Section -->
-    <section class="hero" id="home">
+    <!-- Hero -->
+    <section class="hero">
         <div class="hero-content">
-            <h1>Salom, men Sevinchman!</h1>
-            <p>Frontend dasturchi • UI/UX dizayner • Kreativ ijodkor</p>
+            <h1>XAMROYEVA SEVINCH</h1>
+            <p class="subtitle">Qarshi Davlat Universiteti<br>
+            Matematika va kompyuter ilmlari fakulteti<br>
+            Axborot tizimlari va texnologiyalari yo‘nalishi • 024-34 guruh</p>
             <a href="#projects" class="btn">Loyihalarimni ko‘rish →</a>
         </div>
     </section>
 
     <!-- About -->
-    <section class="about" id="about">
-        <h2>Men haqimda</h2>
-        <p>
-            Salom! Men Sevinchman. Qarshida yashayman va veb-dizayn hamda dasturlashni juda yaxshi ko‘raman. 
-            Chiroyli, zamonaviy va foydalanuvchiga qulay saytlar yaratish – mening asosiy ishim. 
-            Har bir loyihada estetika va funksionallikni birlashtirishga harakat qilaman.
-        </p>
+    <section id="about">
+        <div class="about">
+            <h2>Men haqimda</h2>
+            <p>
+                Salom! Men Xamroyeva Sevinchman. Qarshi Davlat Universitetining Matematika va kompyuter ilmlari fakulteti, 
+                Axborot tizimlari va texnologiyalari yo‘nalishi 024-34 guruh talabasiman. 
+                Matematika, tabiiy va aniq fanlarga katta qiziqishim bor. 
+                Matematika fanidan milliy darajada A+ sertifikatiga ega bo‘ldim. 
+                Kelajakda axborot texnologiyalari va matematik modellashtirish sohasida yuqori malakali mutaxassis bo‘lib yetishishni maqsad qilganman.
+            </p>
+        </div>
+    </section>
+
+    <!-- Education -->
+    <section id="education" style="background: #f8fafc;">
+        <h2>Ta’lim va Yutuqlar</h2>
+        <div class="grid">
+            <div class="card">
+                <i class="fas fa-university"></i>
+                <h3>Qarshi Davlat Universiteti</h3>
+                <p><strong>Axborot tizimlari va texnologiyalari</strong><br>
+                2024 – hozirgacha<br>
+                024-34 guruh</p>
+            </div>
+            <div class="card">
+                <i class="fas fa-award"></i>
+                <h3>Milliy Sertifikat</h3>
+                <p><strong>Matematika fanidan A+ darajasi</strong><br>
+                O‘zbekiston Respublikasi milliy sertifikati</p>
+            </div>
+            <div class="card">
+                <i class="fas fa-heart"></i>
+                <h3>Qiziqishlarim</h3>
+                <p>Matematika • Tabiiy fanlar • Axiq fanlar • Dasturlash • Axborot tizimlari • Ilmiy tadqiqotlar</p>
+            </div>
+        </div>
     </section>
 
     <!-- Skills -->
     <section id="skills">
         <h2>Mening ko‘nikmalarim</h2>
-        <div class="skills-grid">
-            <div class="skill-card">
-                <i class="fas fa-code"></i>
-                <h3>HTML, CSS, JavaScript</h3>
-                <p>Responsive dizayn, animatsiyalar, interaktivlik</p>
+        <div class="grid">
+            <div class="card">
+                <i class="fas fa-calculator"></i>
+                <h3>Matematika</h3>
+                <p>Yuqori darajadagi algebra, geometriya, matematik tahlil</p>
             </div>
-            <div class="skill-card">
-                <i class="fab fa-react"></i>
-                <h3>React & Next.js</h3>
-                <p>Zamonaviy frontend frameworklar</p>
+            <div class="card">
+                <i class="fas fa-laptop-code"></i>
+                <h3>Dasturlash</h3>
+                <p>HTML, CSS, JavaScript, Python asoslari</p>
             </div>
-            <div class="skill-card">
-                <i class="fas fa-palette"></i>
-                <h3>UI/UX Dizayn</h3>
-                <p>Figma, Adobe XD, Tailwind CSS</p>
+            <div class="card">
+                <i class="fas fa-database"></i>
+                <h3>Axborot Tizimlari</h3>
+                <p>Ma’lumotlar bazasi, tizim tahlili, dasturiy ta’minot</p>
             </div>
-            <div class="skill-card">
-                <i class="fas fa-git-alt"></i>
-                <h3>Git & GitHub</h3>
-                <p>Versiya nazorati va hamkorlik</p>
+            <div class="card">
+                <i class="fas fa-chart-line"></i>
+                <h3>Matematik Modellashtirish</h3>
+                <p>Ilmiy hisob-kitoblar va modellar yaratish</p>
             </div>
         </div>
     </section>
@@ -333,24 +329,24 @@
         <h2>Loyihalarim</h2>
         <div class="projects-grid">
             <div class="project-card">
-                <img src="https://source.unsplash.com/random/600x400/?ecommerce" alt="E-commerce">
-                <div class="project-info">
-                    <h3>Onlayn Do‘kon</h3>
-                    <p>To‘liq responsive e-commerce platformasi</p>
+                <img src="https://source.unsplash.com/random/600x400/?mathematics" alt="Matematika loyihasi">
+                <div style="padding: 1.8rem;">
+                    <h3>Matematik Kalkulyator va Vizualizator</h3>
+                    <p>Algebra va geometriya masalalarini yechish uchun interaktiv dastur</p>
                 </div>
             </div>
             <div class="project-card">
-                <img src="https://source.unsplash.com/random/600x400/?blog" alt="Blog">
-                <div class="project-info">
-                    <h3>Shaxsiy Blog</h3>
-                    <p>Maqolalar joylash va boshqarish tizimi</p>
+                <img src="https://source.unsplash.com/random/600x400/?database" alt="Axborot tizimi">
+                <div style="padding: 1.8rem;">
+                    <h3>Universitet Kutubxonasi Axborot Tizimi</h3>
+                    <p>Kitoblar va talabalar ma’lumotlarini boshqarish tizimi (prototip)</p>
                 </div>
             </div>
             <div class="project-card">
-                <img src="https://source.unsplash.com/random/600x400/?portfolio" alt="Portfolio">
-                <div class="project-info">
-                    <h3>Portfolio Sayti</h3>
-                    <p>Zamonaviy va interaktiv shaxsiy sayt</p>
+                <img src="https://source.unsplash.com/random/600x400/?science" alt="Ilmiy loyiha">
+                <div style="padding: 1.8rem;">
+                    <h3>Tabiiy Fanlar Bo‘yicha Ilmiy Tadqiqot</h3>
+                    <p>Matematik modellar yordamida tabiiy jarayonlarni tahlil qilish</p>
                 </div>
             </div>
         </div>
@@ -362,29 +358,26 @@
         <form id="contactForm">
             <input type="text" placeholder="Ismingiz" required>
             <input type="email" placeholder="Email manzilingiz" required>
-            <textarea rows="7" placeholder="Xabaringizni yozing..." required></textarea>
+            <textarea rows="7" placeholder="Xabaringiz..." required></textarea>
             <button type="submit">Xabarni yuborish</button>
         </form>
     </section>
 
     <!-- Footer -->
     <footer>
-        <p>&copy; 2026 Sevinch. Barcha huquqlar himoyalangan.</p>
+        <p>&copy; 2026 Xamroyeva Sevinch. Barcha huquqlar himoyalangan.</p>
+        <p>Qarshi Davlat Universiteti • Axborot tizimlari va texnologiyalari • 024-34 guruh</p>
         <p>Made with ❤️ in Qarshi, Uzbekistan</p>
     </footer>
 
     <script>
-        // Smooth scroll
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function(e) {
                 e.preventDefault();
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
-                    behavior: 'smooth'
-                });
+                document.querySelector(this.getAttribute('href')).scrollIntoView({ behavior: 'smooth' });
             });
         });
 
-        // Contact form
         document.getElementById('contactForm').addEventListener('submit', function(e) {
             e.preventDefault();
             alert("✅ Rahmat, Sevinch! Xabaringiz qabul qilindi. Tez orada javob beraman! 😊");
