@@ -11,7 +11,6 @@
             --secondary: #4c1d95;
             --accent: #c026d3;
             --dark: #0f172a;
-            --light: #f8fafc;
         }
         
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -19,33 +18,36 @@
         body {
             font-family: 'Segoe UI', system-ui, sans-serif;
             line-height: 1.75;
-            color: #334155;
-            background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 100%);
+            color: #e2e8f0;
+            background: linear-gradient(135deg, #0a0f1c 0%, #1e1b4b 50%, #0f172a 100%);
             position: relative;
             overflow-x: hidden;
+            min-height: 100vh;
         }
         
-        /* Chiroyli matematik + yulduz fon effekti */
-        body::before {
-            content: 'π ∑ ∞ √ ∫ Δ ∂ × ÷ α β γ θ λ μ σ τ φ χ ψ ω ★ ✦ ✧';
+        /* Uchayotgan matematik belgilar va yulduzchalar effekti */
+        .math-particles {
             position: fixed;
-            top: -20%;
-            left: -20%;
-            width: 140%;
-            height: 140%;
-            font-size: 2.8rem;
-            color: rgba(192, 38, 211, 0.08);
-            line-height: 1.1;
+            top: 0; left: 0; width: 100%; height: 100%;
             pointer-events: none;
-            animation: mathStars 120s linear infinite;
-            white-space: pre-wrap;
             z-index: -1;
-            opacity: 0.75;
+            overflow: hidden;
         }
         
-        @keyframes mathStars {
-            0%   { transform: translate(0, 0) rotate(0deg); }
-            100% { transform: translate(40px, 50px) rotate(12deg); }
+        .particle {
+            position: absolute;
+            color: rgba(192, 38, 211, 0.25);
+            font-size: 1.8rem;
+            animation: floatMath linear infinite;
+            text-shadow: 0 0 8px rgba(192, 38, 211, 0.4);
+            user-select: none;
+        }
+        
+        @keyframes floatMath {
+            0%   { transform: translateY(100vh) rotate(0deg); opacity: 0; }
+            10%  { opacity: 1; }
+            90%  { opacity: 1; }
+            100% { transform: translateY(-100px) rotate(360deg); opacity: 0; }
         }
         
         header {
@@ -54,7 +56,7 @@
             background: rgba(15, 23, 42, 0.95);
             backdrop-filter: blur(15px);
             z-index: 1000;
-            border-bottom: 1px solid rgba(192, 38, 211, 0.2);
+            border-bottom: 1px solid rgba(192, 38, 211, 0.25);
         }
         
         nav {
@@ -82,10 +84,7 @@
             transition: all 0.3s;
         }
         
-        .nav-links a:hover {
-            color: var(--accent);
-            transform: translateY(-2px);
-        }
+        .nav-links a:hover { color: var(--accent); }
         
         .hero {
             height: 100vh;
@@ -93,7 +92,6 @@
             align-items: center;
             justify-content: center;
             text-align: center;
-            color: white;
             position: relative;
         }
         
@@ -106,7 +104,7 @@
         .hero-content h1 {
             font-size: 4.6rem;
             margin-bottom: 1rem;
-            text-shadow: 0 8px 30px rgba(0,0,0,0.5);
+            text-shadow: 0 8px 30px rgba(0,0,0,0.6);
         }
         
         .subtitle {
@@ -129,7 +127,6 @@
         
         .btn:hover {
             transform: translateY(-12px) scale(1.06);
-            box-shadow: 0 25px 50px rgba(192, 38, 211, 0.6);
         }
         
         section {
@@ -137,6 +134,7 @@
             max-width: 1350px;
             margin: 0 auto;
             position: relative;
+            z-index: 2;
         }
         
         h2 {
@@ -149,17 +147,16 @@
         
         .card {
             background: rgba(255, 255, 255, 0.95);
+            color: #1e2937;
             padding: 3rem 2.2rem;
             border-radius: 24px;
-            box-shadow: 0 20px 50px rgba(0,0,0,0.15);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.2);
             text-align: center;
             transition: all 0.4s;
-            backdrop-filter: blur(10px);
         }
         
         .card:hover {
             transform: translateY(-20px);
-            box-shadow: 0 30px 70px rgba(107, 33, 168, 0.25);
         }
         
         .card i {
@@ -182,15 +179,14 @@
         
         .project-card {
             background: rgba(255,255,255,0.95);
+            color: #1e2937;
             border-radius: 24px;
             overflow: hidden;
-            box-shadow: 0 20px 50px rgba(0,0,0,0.15);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.2);
             transition: all 0.4s;
         }
         
-        .project-card:hover {
-            transform: translateY(-18px);
-        }
+        .project-card:hover { transform: translateY(-18px); }
         
         .project-card img {
             width: 100%;
@@ -199,7 +195,7 @@
         }
         
         .contact {
-            background: rgba(15, 23, 42, 0.85);
+            background: rgba(15, 23, 42, 0.9);
             color: white;
             border-radius: 30px;
             padding: 80px 5%;
@@ -221,10 +217,6 @@
             font-size: 1.15rem;
         }
         
-        input::placeholder, textarea::placeholder {
-            color: rgba(255,255,255,0.7);
-        }
-        
         button {
             padding: 20px;
             background: var(--accent);
@@ -234,13 +226,9 @@
             font-size: 1.3rem;
             font-weight: 700;
             cursor: pointer;
-            transition: all 0.3s;
         }
         
-        button:hover {
-            background: #e879f9;
-            transform: scale(1.03);
-        }
+        button:hover { background: #e879f9; }
         
         footer {
             background: #0a0f1c;
@@ -248,14 +236,12 @@
             text-align: center;
             padding: 4rem 5%;
         }
-        
-        @media (max-width: 768px) {
-            .hero-content h1 { font-size: 3.3rem; }
-            .subtitle { font-size: 1.4rem; }
-        }
     </style>
 </head>
 <body>
+
+    <!-- Uchayotgan matematik effekt -->
+    <div class="math-particles" id="particles"></div>
 
     <!-- Navbar -->
     <header>
@@ -278,7 +264,7 @@
             <p class="subtitle">
                 Qarshi Davlat Universiteti<br>
                 Matematika va kompyuter ilmlari fakulteti<br>
-                Axborot tizimlari va texnologiyalari yo‘nalishi • 024-34 guruh
+                Axborot tizimlari va texnologiyalari • 024-34 guruh
             </p>
             <a href="#projects" class="btn">Loyihalarimni ko‘rish →</a>
         </div>
@@ -288,18 +274,17 @@
     <section id="about">
         <div class="card" style="max-width: 920px; margin: 0 auto;">
             <h2 style="color: var(--primary);">Men haqimda</h2>
-            <p style="font-size: 1.3rem; text-align: center; color: #1e2937;">
+            <p style="font-size: 1.3rem; text-align: center;">
                 Salom! Men Xamroyeva Sevinchman. Qarshi Davlat Universitetining Matematika va kompyuter ilmlari fakulteti, 
                 Axborot tizimlari va texnologiyalari yo‘nalishi 024-34 guruh talabasiman. 
                 Matematika, tabiiy va aniq fanlarga katta qiziqishim bor. 
-                Matematika fanidan milliy A+ darajali sertifikat, Coursera platformasidan “Data Science Math Skills” sertifikati 
-                hamda xalqaro maqolalarim bo‘yicha xalqaro sertifikatlar oldim. 
-                Kelajakda matematik modellashtirish va axborot texnologiyalari sohasida yuqori malakali mutaxassis bo‘lishni orzu qilaman.
+                Matematika fanidan milliy A+ darajali sertifikat, Coursera “Data Science Math Skills” sertifikati 
+                hamda xalqaro maqolalarim bo‘yicha xalqaro sertifikatlar oldim.
             </p>
         </div>
     </section>
 
-    <!-- Education & Certificates -->
+    <!-- Ta’lim va Sertifikatlar -->
     <section id="education">
         <h2>Ta’lim va Sertifikatlar</h2>
         <div class="grid">
@@ -320,25 +305,25 @@
             </div>
             <div class="card">
                 <i class="fas fa-globe"></i>
-                <h3>Xalqaro Maqolalar Sertifikatlari</h3>
-                <p>Xalqaro konferensiyalar va jurnallarda chop etilgan maqolalar uchun</p>
+                <h3>Xalqaro Maqolalar</h3>
+                <p>Xalqaro konferensiyalar va jurnallardagi maqolalar uchun sertifikatlar</p>
             </div>
         </div>
     </section>
 
-    <!-- Skills -->
+    <!-- Ko‘nikmalar -->
     <section id="skills">
         <h2>Mening ko‘nikmalarim</h2>
         <div class="grid">
             <div class="card">
                 <i class="fas fa-square-root-alt"></i>
                 <h3>Matematika</h3>
-                <p>Algebra, geometriya, matematik tahlil, ehtimollar nazariyasi</p>
+                <p>Algebra, geometriya, matematik tahlil, ehtimollar</p>
             </div>
             <div class="card">
                 <i class="fas fa-laptop-code"></i>
                 <h3>Dasturlash</h3>
-                <p>HTML, CSS, JavaScript, Python asoslari</p>
+                <p>HTML, CSS, JavaScript, Python</p>
             </div>
             <div class="card">
                 <i class="fas fa-database"></i>
@@ -347,18 +332,18 @@
             </div>
             <div class="card">
                 <i class="fas fa-chart-line"></i>
-                <h3>Data Science & Modellashtirish</h3>
-                <p>Statistika, matematik modellar</p>
+                <h3>Data Science</h3>
+                <p>Matematik modellar va statistika</p>
             </div>
         </div>
     </section>
 
-    <!-- Projects -->
+    <!-- Loyihalar -->
     <section id="projects">
         <h2>Loyihalarim</h2>
         <div class="projects-grid">
             <div class="project-card">
-                <img src="https://source.unsplash.com/random/700x400/?mathematics,formula" alt="Matematika">
+                <img src="https://source.unsplash.com/random/700x400/?mathematics" alt="Matematika">
                 <div style="padding: 2.2rem;">
                     <h3>Interaktiv Matematik Vizualizator</h3>
                     <p>Algebra va geometriya masalalarini yechish va vizualizatsiya</p>
@@ -368,7 +353,7 @@
                 <img src="https://source.unsplash.com/random/700x400/?database" alt="Tizim">
                 <div style="padding: 2.2rem;">
                     <h3>Universitet Axborot Tizimi</h3>
-                    <p>Talabalar va fanlar ma’lumotlarini boshqarish prototipi</p>
+                    <p>Talabalar ma’lumotlarini boshqarish prototipi</p>
                 </div>
             </div>
             <div class="project-card">
@@ -381,7 +366,7 @@
         </div>
     </section>
 
-    <!-- Contact -->
+    <!-- Aloqa -->
     <section class="contact" id="contact">
         <h2>Aloqa qilaylik</h2>
         <form id="contactForm">
@@ -395,11 +380,33 @@
     <!-- Footer -->
     <footer>
         <p>&copy; 2026 Xamroyeva Sevinch. Barcha huquqlar himoyalangan.</p>
-        <p>Qarshi Davlat Universiteti • Axborot tizimlari va texnologiyalari • 024-34 guruh</p>
-        <p>Made with ❤️ va matematik yulduzlar bilan</p>
+        <p>Qarshi Davlat Universiteti • 024-34 guruh</p>
+        <p>Made with 💓 va uchayotgan matematika bilan</p>
     </footer>
 
     <script>
+        // Uchayotgan matematik belgilar effekti
+        function createParticles() {
+            const container = document.getElementById('particles');
+            const symbols = ['π', '∑', '∞', '√', '∫', 'Δ', '∂', '×', '÷', 'α', 'β', 'γ', 'θ', 'λ', 'μ', 'σ', 'τ', 'φ', 'χ', 'ψ', 'ω', '★', '✦', '✧', '≠', '≈', '∝'];
+            
+            for (let i = 0; i < 45; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.textContent = symbols[Math.floor(Math.random() * symbols.length)];
+                
+                const size = Math.random() * 1.8 + 1.2;
+                particle.style.fontSize = `${size}rem`;
+                particle.style.left = `${Math.random() * 100}vw`;
+                particle.style.animationDuration = `${Math.random() * 35 + 25}s`;
+                particle.style.animationDelay = `-${Math.random() * 40}s`;
+                particle.style.opacity = Math.random() * 0.4 + 0.15;
+                
+                container.appendChild(particle);
+            }
+        }
+        
+        // Smooth scroll va forma
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function(e) {
                 e.preventDefault();
@@ -409,9 +416,12 @@
 
         document.getElementById('contactForm').addEventListener('submit', function(e) {
             e.preventDefault();
-            alert("✅ Rahmat, Hurmatli mijoz! Xabaringiz qabul qilindi. Tez orada javob beraman! 😊");
+            alert("✅ Rahmat, Hurmatli mijoz!❤️ Xabaringiz qabul qilindi. Tez orada javob beraman!✨️ 😊");
             this.reset();
         });
+
+        // Effektni ishga tushirish
+        window.onload = createParticles;
     </script>
 </body>
 </html>
