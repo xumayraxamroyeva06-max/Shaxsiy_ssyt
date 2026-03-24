@@ -1,163 +1,269 @@
-
 <!DOCTYPE html>
 <html lang="uz">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Xumayra - Shaxsiy Portfolio</title>
+    <title>Sevinch - Shaxsiy Portfolio</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
     <style>
         :root {
-            --primary: #6a0dad;
-            --dark: #1a1a2e;
-            --light: #f8f9fa;
+            --primary: #c026d3;
+            --secondary: #7e22ce;
+            --dark: #0f172a;
+            --light: #f8fafc;
         }
-        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
         body {
-            font-family: 'Segoe UI', sans-serif;
-            line-height: 1.6;
-            color: #333;
+            font-family: 'Segoe UI', system-ui, sans-serif;
+            line-height: 1.7;
+            color: #334155;
             background: var(--light);
+            overflow-x: hidden;
         }
+        
         header {
             position: fixed;
+            top: 0;
             width: 100%;
-            background: rgba(26, 26, 46, 0.95);
-            backdrop-filter: blur(10px);
+            background: rgba(15, 23, 42, 0.95);
+            backdrop-filter: blur(12px);
             z-index: 1000;
+            border-bottom: 1px solid rgba(192, 38, 211, 0.2);
         }
+        
         nav {
-            max-width: 1200px;
+            max-width: 1300px;
             margin: 0 auto;
-            padding: 1rem 2rem;
+            padding: 1.2rem 5%;
             display: flex;
             justify-content: space-between;
             align-items: center;
         }
+        
         .logo {
-            font-size: 1.8rem;
-            font-weight: bold;
-            color: white;
+            font-size: 2rem;
+            font-weight: 800;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
+        
         .nav-links {
             display: flex;
-            gap: 2rem;
+            gap: 2.5rem;
         }
+        
         .nav-links a {
             color: white;
             text-decoration: none;
-            font-weight: 500;
-            transition: color 0.3s;
+            font-weight: 600;
+            transition: all 0.3s;
         }
+        
         .nav-links a:hover {
             color: var(--primary);
+            transform: translateY(-2px);
         }
+        
         .hero {
             height: 100vh;
-            background: linear-gradient(135deg, var(--dark), #4a0b7a);
+            background: linear-gradient(135deg, var(--dark) 0%, #4c1d95 100%);
             color: white;
             display: flex;
             align-items: center;
             justify-content: center;
             text-align: center;
-            padding: 0 2rem;
+            position: relative;
+            overflow: hidden;
         }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('https://source.unsplash.com/random/1920x1080/?abstract,purple') no-repeat center/cover;
+            opacity: 0.15;
+        }
+        
+        .hero-content {
+            max-width: 900px;
+            z-index: 2;
+        }
+        
         .hero-content h1 {
-            font-size: 4rem;
+            font-size: 4.5rem;
             margin-bottom: 1rem;
+            line-height: 1.1;
         }
+        
         .hero-content p {
-            font-size: 1.5rem;
-            margin-bottom: 2rem;
+            font-size: 1.6rem;
+            margin-bottom: 2.5rem;
+            opacity: 0.9;
         }
+        
         .btn {
             display: inline-block;
-            padding: 12px 30px;
+            padding: 16px 40px;
             background: var(--primary);
             color: white;
             border-radius: 50px;
             text-decoration: none;
-            font-weight: bold;
-            transition: all 0.3s;
+            font-weight: 700;
+            font-size: 1.1rem;
+            transition: all 0.4s;
+            box-shadow: 0 10px 30px rgba(192, 38, 211, 0.4);
         }
+        
         .btn:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(106, 13, 173, 0.4);
+            transform: translateY(-8px) scale(1.05);
+            box-shadow: 0 20px 40px rgba(192, 38, 211, 0.5);
         }
+        
         section {
-            padding: 100px 5%;
-            max-width: 1200px;
+            padding: 110px 5%;
+            max-width: 1300px;
             margin: 0 auto;
         }
+        
         h2 {
-            font-size: 3rem;
+            font-size: 3.2rem;
             text-align: center;
             margin-bottom: 4rem;
-            color: var(--dark);
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
-        .about {
-            background: white;
+        
+        .about p {
+            max-width: 800px;
+            margin: 0 auto;
+            font-size: 1.25rem;
+            text-align: center;
+            color: #475569;
         }
+        
         .skills-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 2rem;
         }
+        
         .skill-card {
             background: white;
-            padding: 2rem;
-            border-radius: 15px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            padding: 2.5rem 2rem;
+            border-radius: 20px;
             text-align: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            transition: all 0.4s;
         }
+        
+        .skill-card:hover {
+            transform: translateY(-15px);
+            box-shadow: 0 20px 40px rgba(192, 38, 211, 0.15);
+        }
+        
+        .skill-card i {
+            font-size: 3.5rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+        
         .projects-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
+            grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+            gap: 2.5rem;
         }
+        
         .project-card {
             background: white;
-            border-radius: 15px;
+            border-radius: 20px;
             overflow: hidden;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-            transition: transform 0.3s;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: all 0.4s;
         }
+        
         .project-card:hover {
-            transform: translateY(-10px);
+            transform: translateY(-15px);
         }
+        
         .project-card img {
             width: 100%;
-            height: 200px;
+            height: 240px;
             object-fit: cover;
         }
+        
         .project-info {
-            padding: 1.5rem;
+            padding: 1.8rem;
         }
+        
+        .project-info h3 {
+            margin-bottom: 0.8rem;
+            color: var(--dark);
+        }
+        
         .contact {
-            background: var(--dark);
+            background: linear-gradient(135deg, var(--dark), #4c1d95);
             color: white;
         }
+        
         form {
-            max-width: 600px;
+            max-width: 700px;
             margin: 0 auto;
             display: grid;
-            gap: 1rem;
+            gap: 1.5rem;
         }
+        
         input, textarea {
-            padding: 15px;
+            padding: 18px 20px;
             border: none;
-            border-radius: 10px;
-            font-size: 1rem;
+            border-radius: 15px;
+            font-size: 1.1rem;
+            background: rgba(255,255,255,0.1);
+            color: white;
         }
+        
+        input::placeholder, textarea::placeholder {
+            color: rgba(255,255,255,0.7);
+        }
+        
+        button {
+            padding: 18px;
+            background: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 15px;
+            font-size: 1.2rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        button:hover {
+            background: #e879f9;
+            transform: scale(1.03);
+        }
+        
         footer {
-            background: #111;
-            color: #aaa;
+            background: #0a0f1c;
+            color: #94a3b8;
             text-align: center;
-            padding: 2rem;
+            padding: 3rem 5%;
         }
-        /* Mobil uchun */
+        
+        /* Responsive */
         @media (max-width: 768px) {
-            .nav-links { gap: 1rem; font-size: 0.9rem; }
-            .hero-content h1 { font-size: 2.8rem; }
+            .hero-content h1 { font-size: 3.2rem; }
+            .nav-links { gap: 1.2rem; font-size: 0.95rem; }
         }
     </style>
 </head>
@@ -166,7 +272,7 @@
     <!-- Navbar -->
     <header>
         <nav>
-            <div class="logo">Xumayra</div>
+            <div class="logo">Sevinch</div>
             <div class="nav-links">
                 <a href="#about">Men haqimda</a>
                 <a href="#skills">Ko‘nikmalar</a>
@@ -176,22 +282,22 @@
         </nav>
     </header>
 
-    <!-- Hero -->
+    <!-- Hero Section -->
     <section class="hero" id="home">
         <div class="hero-content">
-            <h1>Salom, men Xumayra!</h1>
-            <p>Frontend dasturchi | Dizayner | Kreativ shaxs</p>
-            <a href="#projects" class="btn">Loyihalarimni ko‘rish</a>
+            <h1>Salom, men Sevinchman!</h1>
+            <p>Frontend dasturchi • UI/UX dizayner • Kreativ ijodkor</p>
+            <a href="#projects" class="btn">Loyihalarimni ko‘rish →</a>
         </div>
     </section>
 
     <!-- About -->
     <section class="about" id="about">
         <h2>Men haqimda</h2>
-        <p style="max-width: 800px; margin: 0 auto; font-size: 1.2rem; text-align: center;">
-            Men Qarshida yashayman va veb-saytlar yaratishni juda yaxshi ko‘raman. 
-            HTML, CSS, JavaScript va zamonaviy texnologiyalar yordamida chiroyli va foydali loyihalar qilaman. 
-            Maqsadim – har bir loyihada foydalanuvchiga eng yaxshi tajribani taqdim etish.
+        <p>
+            Salom! Men Sevinchman. Qarshida yashayman va veb-dizayn hamda dasturlashni juda yaxshi ko‘raman. 
+            Chiroyli, zamonaviy va foydalanuvchiga qulay saytlar yaratish – mening asosiy ishim. 
+            Har bir loyihada estetika va funksionallikni birlashtirishga harakat qilaman.
         </p>
     </section>
 
@@ -200,51 +306,51 @@
         <h2>Mening ko‘nikmalarim</h2>
         <div class="skills-grid">
             <div class="skill-card">
-                <h3>HTML & CSS</h3>
-                <p>Responsive dizayn, Tailwind, Bootstrap</p>
+                <i class="fas fa-code"></i>
+                <h3>HTML, CSS, JavaScript</h3>
+                <p>Responsive dizayn, animatsiyalar, interaktivlik</p>
             </div>
             <div class="skill-card">
-                <h3>JavaScript</h3>
-                <p>React asoslari, animatsiyalar, interaktivlik</p>
+                <i class="fab fa-react"></i>
+                <h3>React & Next.js</h3>
+                <p>Zamonaviy frontend frameworklar</p>
             </div>
             <div class="skill-card">
-                <h3>Figma / Dizayn</h3>
-                <p>UI/UX dizayn, prototiplar</p>
+                <i class="fas fa-palette"></i>
+                <h3>UI/UX Dizayn</h3>
+                <p>Figma, Adobe XD, Tailwind CSS</p>
             </div>
             <div class="skill-card">
+                <i class="fas fa-git-alt"></i>
                 <h3>Git & GitHub</h3>
-                <p>Versiya boshqaruvi</p>
+                <p>Versiya nazorati va hamkorlik</p>
             </div>
         </div>
     </section>
 
     <!-- Projects -->
-    <section id="projects" style="background: #f8f9fa;">
+    <section id="projects" style="background: #f1f5f9;">
         <h2>Loyihalarim</h2>
         <div class="projects-grid">
             <div class="project-card">
-                <!-- Rasmlar o‘rniga placeholder ishlatilgan, o‘zingizning rasmlaringizni qo‘shing -->
-                <img src="https://via.placeholder.com/600x300/6a0dad/ffffff?text=Loyiha+1" alt="Loyiha 1">
+                <img src="https://source.unsplash.com/random/600x400/?ecommerce" alt="E-commerce">
                 <div class="project-info">
-                    <h3>E-commerce sayt</h3>
-                    <p>To‘liq responsive onlayn do‘kon</p>
-                    <a href="#" class="btn" style="font-size: 0.9rem; padding: 8px 20px; margin-top: 10px;">Ko‘rish</a>
+                    <h3>Onlayn Do‘kon</h3>
+                    <p>To‘liq responsive e-commerce platformasi</p>
                 </div>
             </div>
             <div class="project-card">
-                <img src="https://via.placeholder.com/600x300/4a0b7a/ffffff?text=Loyiha+2" alt="Loyiha 2">
+                <img src="https://source.unsplash.com/random/600x400/?blog" alt="Blog">
                 <div class="project-info">
-                    <h3>Blog platformasi</h3>
-                    <p>Maqolalar qo‘shish va o‘qish mumkin</p>
-                    <a href="#" class="btn" style="font-size: 0.9rem; padding: 8px 20px; margin-top: 10px;">Ko‘rish</a>
+                    <h3>Shaxsiy Blog</h3>
+                    <p>Maqolalar joylash va boshqarish tizimi</p>
                 </div>
             </div>
             <div class="project-card">
-                <img src="https://via.placeholder.com/600x300/6a0dad/ffffff?text=Loyiha+3" alt="Loyiha 3">
+                <img src="https://source.unsplash.com/random/600x400/?portfolio" alt="Portfolio">
                 <div class="project-info">
-                    <h3>Portfolio sayti (hozirgi)</h3>
-                    <p>O‘zingiz kabi shaxsiy sayt</p>
-                    <a href="#" class="btn" style="font-size: 0.9rem; padding: 8px 20px; margin-top: 10px;">Ko‘rish</a>
+                    <h3>Portfolio Sayti</h3>
+                    <p>Zamonaviy va interaktiv shaxsiy sayt</p>
                 </div>
             </div>
         </div>
@@ -252,23 +358,23 @@
 
     <!-- Contact -->
     <section class="contact" id="contact">
-        <h2>Aloqa qilish</h2>
-        <form>
+        <h2>Aloqa qilaylik</h2>
+        <form id="contactForm">
             <input type="text" placeholder="Ismingiz" required>
             <input type="email" placeholder="Email manzilingiz" required>
-            <textarea rows="6" placeholder="Xabaringiz..." required></textarea>
-            <button type="submit" class="btn" style="width: 100%; border: none; cursor: pointer;">Yuborish</button>
+            <textarea rows="7" placeholder="Xabaringizni yozing..." required></textarea>
+            <button type="submit">Xabarni yuborish</button>
         </form>
     </section>
 
     <!-- Footer -->
     <footer>
-        <p>&copy; 2026 Xumayra. Barcha huquqlar himoyalangan.</p>
-        <p>Made with ❤️ in Qarshi</p>
+        <p>&copy; 2026 Sevinch. Barcha huquqlar himoyalangan.</p>
+        <p>Made with ❤️ in Qarshi, Uzbekistan</p>
     </footer>
 
     <script>
-        // Oddiy smooth scroll
+        // Smooth scroll
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function(e) {
                 e.preventDefault();
@@ -278,10 +384,10 @@
             });
         });
 
-        // Formani yuborishda alert (keyinchalik backend qo‘shsa bo‘ladi)
-        document.querySelector('form').addEventListener('submit', function(e) {
+        // Contact form
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
             e.preventDefault();
-            alert("Xabaringiz qabul qilindi! Tez orada javob beraman 😊");
+            alert("✅ Rahmat, Sevinch! Xabaringiz qabul qilindi. Tez orada javob beraman! 😊");
             this.reset();
         });
     </script>
